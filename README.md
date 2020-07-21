@@ -1,41 +1,83 @@
 <!-- Please do not change this html logo with link -->
 <a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Update the title for [ADD_REPO_NAME_HERE] here
+# Wake-up from Sleep using the Watchdog Timer with PIC16F15244
 
-<!-- This is where the introduction to the example goes, including mentioning the peripherals used -->
+The 'pic16f15244-wdt-wake-up' code example uses the PIC16F15244 Curiosity Nano Development board to demonstrate how to use the Watchdog Timer (WDT) to wake up the microcontroller when it is in Sleep mode.
+
+##### PIC16F15244 Curiosity Nano Development Board:
+![Curiosity Nano Development Board](images/NanoHighlights.png)
 
 ## Related Documentation
-
-<!-- Any information about an application note or tech brief can be linked here. Use unbreakable links!
-     In addition a link to the device family landing page and relevant peripheral pages as well:
-     - [AN3381 - Brushless DC Fan Speed Control Using Temperature Input and Tachometer Feedback](https://microchip.com/00003381/)
-     - [PIC18F-Q10 Family Product Page](https://www.microchip.com/design-centers/8-bit/pic-mcus/device-selection/pic18f-q10-product-family) -->
+- [PIC16F15244 Product Page](https://www.microchip.com/wwwproducts/en/PIC16F15244)
 
 ## Software Used
-
-<!-- All software used in this example must be listed here. Use unbreakable links!
-     - MPLAB® X IDE 5.30 or newer [(microchip.com/mplab/mplab-x-ide)](http://www.microchip.com/mplab/mplab-x-ide)
-     - MPLAB® XC8 2.10 or a newer compiler [(microchip.com/mplab/compilers)](http://www.microchip.com/mplab/compilers)
-     - MPLAB® Code Configurator (MCC) 3.95.0 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - MPLAB® Code Configurator (MCC) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 MCUs [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - Microchip PIC18F-Q Series Device Support (1.4.109) or newer [(packs.download.microchip.com/)](https://packs.download.microchip.com/) -->
+- MPLAB® X IDE 5.40 or newer [(microchip.com/mplab/mplab-x-ide)](http://www.microchip.com/mplab/mplab-x-ide)
+- MPLAB® XC8 2.20 or a newer compiler [(microchip.com/mplab/compilers)](http://www.microchip.com/mplab/compilers)
+- MPLAB® Code Configurator (MCC) 3.95.0 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
+- MPLAB® Code Configurator (MCC) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 MCUs [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
+- Microchip PIC16F1xxxx Series Device Support (1.4.119) or newer [(packs.download.microchip.com/)](https://packs.download.microchip.com/)
 
 ## Hardware Used
-
-<!-- All hardware used in this example must be listed here. Use unbreakable links!
-     - PIC18F47Q10 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029)
-     - Curiosity Nano Base for Click boards™ [(AC164162)](https://www.microchip.com/Developmenttools/ProductDetails/AC164162)
-     - POT Click board™ [(MIKROE-3402)](https://www.mikroe.com/pot-click) -->
+- PIC16F15244 Curiosity Nano [(EV09Z19A)](https://www.microchip.com/Developmenttools/ProductDetails/EV09Z19A)
+- Micro-USB to USB 2.0 cable
 
 ## Setup
+1. Connect the PIC16f15244 Curiosity Nano board to a PC using the Micro-USB to USB 2.0 cable.
+2. If not already on your system, download and install MPLABX IDE version 5.40 (or newer).
+3. If not already on your system, download and install the XC8 C-Compiler version 2.20 (or newer).
+4. Open the 'pic16f15244-wdt-wake-up.X' project as shown in Figure 1.
 
-<!-- Explain how to connect hardware and set up software. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+  ###### Figure 1: Open Project Window
+  ![Open Project Window](images/OpenProject.png)
+
+5. Press the 'Project Properites' button to open the Project Properties window. Select the Curiosity tool from the Tools drop-down menu as shown in Figure 2.
+
+  ###### Figure 2: Select the Nano in Project Properties Window
+  ![Select Tool](images/SelectTool.png)
+
+6. Press the 'Make and Program Device' button to program the PIC (see Figure 3). Verify that the device was successfully programmed (see Figure 4).
+
+  ###### Figure 3: 'Make and Program Device' Button
+  ![Program Device Button](images/MakeAndProgramButton.png)
+
+  ###### Figure 4: Program Complete
+  ![Program Complete](images/ProgramSuccess.png)
+
 
 ## Operation
+After the Nano board is programmed, the Watchdog Timer is enabled, and LED0 will be in its 'ON' state. After a one second delay, the `SLEEP()` command is issued, which puts the microcontroller into its Sleep state. If the WDT reaches its maximum time period before a Clear WDT (`CLRWDT()`) command is issued, the WDT will wake up the device.
 
-<!-- Explain how to operate the example. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+The WDT can be used to reset a program if the program stops executing code for a certain amount of time, or as a way to wake up the device after a period of time. In this example, the WDT is configured to time-out after approximately four seconds (see Figure 5). When the time-out occurs, the microcontroller wakes up, and begins to toggle LED0 every 500 ms. Example 1 shows the `main()` loop, which exectues the `SLEEP()` command, and begins to toggle LED0 after the WDT wakes up the device.
+
+  ###### Figure 5: WDT Configuration in MCC
+  ![WDT Configuration](images/WDTConfig.png)
+
+
+###### Example 1: Main() Code Snippet
+
+    void main(void)
+    {
+        SYSTEM_Initialize();                       // Initialize the device
+        CLRWDT();                                  // Clear WDT
+
+        while (1)
+        {
+            LED0_SetDigitalOutput();               // Turn ON LED
+            __delay_ms(1000);                      // Delay 1 second
+            SLEEP();                               // Issue Sleep command
+
+            while(1)                               // After wake-up, blink LED
+            {
+                LED0_SetDigitalInput();            // Turn OFF LED
+                __delay_ms(500);                   // 1/2 second delay
+                LED0_SetDigitalOutput();           // Turn ON LED
+                __delay_ms(500);                   // 1/2 second delay
+                CLRWDT();                          // Clear WDT
+            }
+        }
+      }
+
 
 ## Summary
-
-<!-- Summarize what the example has shown -->
+The 'pic16f15244-wdt-wake-up' code example uses the PIC16F15244 Curiosity Nano Development board to demonstrate how to use the Watchdog Timer (WDT) to wake up the microcontroller when it is in Sleep mode.
