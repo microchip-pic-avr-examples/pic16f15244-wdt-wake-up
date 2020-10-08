@@ -4,7 +4,7 @@
     "content": {
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.pic16f15244-wdt-wake-up",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "displayName": "Wake-up from Sleep using the Watchdog Timer with PIC16F15244",
         "projectName": "pic16f15244-wdt-wake-up",
         "shortDescription": "The 'pic16f15244-wdt-wake-up' code example uses the PIC16F15244 Curiosity Nano Development board to demonstrate how to use the Watchdog Timer (WDT) to wake up the microcontroller when it is in Sleep mode.",
