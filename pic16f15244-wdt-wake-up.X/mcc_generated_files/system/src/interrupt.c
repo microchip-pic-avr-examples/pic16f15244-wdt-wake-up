@@ -1,3 +1,26 @@
+/**
+  Generated Interrupt Manager Source File
+
+  @Company:
+    Microchip Technology Inc.
+
+  @File Name:
+    interrupt.c
+
+  @Summary:
+    This is the Interrupt Manager file generated
+
+  @Description:
+    This header file provides implementations for global interrupt handling.
+    For individual peripheral handlers please see the peripheral driver for
+    all modules selected in the GUI.
+    Generation Information :
+        Driver Version    :  2.03
+    The generated drivers are tested against the following:
+        Compiler          :  XC8 v2.2 or later
+        MPLAB 	          :  MPLABX v5.45
+*/
+
 /*
 Copyright (c) [2012-2020] Microchip Technology Inc.  
 
@@ -31,31 +54,49 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
     third party licenses prohibit any of the restrictions described here, 
     such restrictions will not apply to such third party software.
 */
-#include "mcc_generated_files/system/system.h"
 
-/*
-    Main application
-*/
+#include "../../system/interrupt.h"
+#include "../../system/system.h"
 
-int main(void)
+void (*INT_InterruptHandler)(void);
+
+void  INTERRUPT_Initialize (void)
 {
-    SYSTEM_Initialize();                                                        // Initialize the device
-    
-    CLRWDT();                                                                   // Clear WDT
-    
-    while (1)
+    // Clear the interrupt flag
+    EXT_INT_InterruptFlagClear();   
+    // Set Default Interrupt Handler
+    INT_SetInterruptHandler(INT_DefaultInterruptHandler);
+    // EXT_INT_InterruptEnable();
+
+}
+
+
+void INT_ISR(void)
+{
+    EXT_INT_InterruptFlagClear();
+
+    // Callback function gets called everytime this ISR executes
+    INT_CallBack();    
+}
+
+
+void INT_CallBack(void)
+{
+    // Add your custom callback code here
+    if(INT_InterruptHandler)
     {
-        LED0_SetDigitalOutput();                                                // Turn ON LED
-        __delay_ms(1000);                                                       // Delay 1 second
-        SLEEP();                                                                // Issue Sleep command
-        
-        while(1)                                                                // After wake-up, blink LED
-        {
-            LED0_SetDigitalInput();                                             // Turn OFF LED                                           
-            __delay_ms(500);                                                    // 1/2 second delay
-            LED0_SetDigitalOutput();                                            // Turn ON LED
-            __delay_ms(500);                                                    // 1/2 second delay
-            CLRWDT();                                                           // Clear WDT
-        }
+        INT_InterruptHandler();
     }
 }
+
+void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
+    INT_InterruptHandler = InterruptHandler;
+}
+
+void INT_DefaultInterruptHandler(void){
+    // add your INT interrupt custom code
+    // or set custom function using INT_SetInterruptHandler()
+}
+/**
+ End of File
+*/

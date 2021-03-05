@@ -1,3 +1,24 @@
+/**
+  @Generated CCL Header File
+
+  @Company:
+    Microchip Technology Inc.
+
+  @File Name:
+    config_bits.h
+
+  @Summary:
+    This is the config_bits.h file generated using CCL
+
+  @Description:
+    This header file provides implementations for driver APIs for all modules selected in the GUI.
+    Generation Information :
+        Driver Version    :  2.00
+    The generated drivers are tested against the following:
+        Compiler          :  XC8 v2.31
+        MPLAB             :  MPLAB X 5.45
+*/
+
 /*
 Copyright (c) [2012-2020] Microchip Technology Inc.  
 
@@ -31,31 +52,10 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
     third party licenses prohibit any of the restrictions described here, 
     such restrictions will not apply to such third party software.
 */
-#include "mcc_generated_files/system/system.h"
 
-/*
-    Main application
-*/
+#ifndef CONFIG_BITS_H
+#define	CONFIG_BITS_H
 
-int main(void)
-{
-    SYSTEM_Initialize();                                                        // Initialize the device
-    
-    CLRWDT();                                                                   // Clear WDT
-    
-    while (1)
-    {
-        LED0_SetDigitalOutput();                                                // Turn ON LED
-        __delay_ms(1000);                                                       // Delay 1 second
-        SLEEP();                                                                // Issue Sleep command
-        
-        while(1)                                                                // After wake-up, blink LED
-        {
-            LED0_SetDigitalInput();                                             // Turn OFF LED                                           
-            __delay_ms(500);                                                    // 1/2 second delay
-            LED0_SetDigitalOutput();                                            // Turn ON LED
-            __delay_ms(500);                                                    // 1/2 second delay
-            CLRWDT();                                                           // Clear WDT
-        }
-    }
-}
+#include "../system/clock.h"
+
+#endif //CONFIG_BITS_H
