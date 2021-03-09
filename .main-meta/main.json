@@ -3,7 +3,7 @@
     "category": "com.microchip.ide.project",
     "content": {
         "metaDataVersion": "1.1.0",
-        "name": "com.microchip.mcu8.mplabx.project.pic16f15244-wdt-wake-up",
+        "name": "com.microchip.mcu8.mplabx.project.pic16f15244-wdt-wake-up_mcc",
         "version": "2.0.0",
         "displayName": "Wake-up from Sleep using the Watchdog Timer with PIC16F15244",
         "projectName": "pic16f15244-wdt-wake-up",
@@ -24,7 +24,7 @@
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": ">=3.95.0"
+            "semverRange": ">=4.1.0"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -48,7 +48,8 @@
         ],
         "keywords": [
             "Functional Safety",
-            "Sensor"
+            "Sensor",
+            "Melody"
         ],
 		"additionalData": {
 			"longDescription": {
