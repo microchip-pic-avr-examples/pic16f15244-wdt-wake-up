@@ -4,12 +4,8 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>pic16f15244-wdt-wake-up</name>
-            <creation-uuid>f0fc46bd-9d10-41ea-88c6-a57ff9b91034</creation-uuid>
+            <creation-uuid>afa7b640-dd21-4240-bdaa-8b7acec21f64</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions>c</c-extensions>
-            <cpp-extensions/>
-            <header-extensions>h</header-extensions>
-            <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList/>
