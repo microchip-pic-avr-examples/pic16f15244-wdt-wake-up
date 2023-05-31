@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Tue May 23 15:45:26 2023
+                                                                                               Wed May 31 09:22:19 2023
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	16F15244
@@ -1974,7 +1974,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   1954                           ;	Boot Block Enable bit
   1955                           ;	BBEN = OFF, Boot Block is disabled
   1956                           ;	SAF Enable bit
-  1957                           ;	SAFEN = OFF, SAF is disabled
+  1957                           ;	SAFEN = ON, SAF is enabled
   1958                           ;	Application Block Write Protection bit
   1959                           ;	WRTAPP = OFF, Application Block is not write-protected
   1960                           ;	Boot Block Write Protection bit
@@ -1987,7 +1987,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   1967                           ;	LVP = ON, Low Voltage programming enabled. MCLR/Vpp pin function is MCLR. MCLRE Config
       +                          uration bit is ignored.
   1968     800A                     	org	32778
-  1969     800A  3FFF               	dw	16383
+  1969     800A  3FEF               	dw	16367
   1970                           
   1971                           ;Config register CONFIG5 @ 0x800B
   1972                           ;	User Program Flash Memory Code Protection bit
@@ -2294,7 +2294,7 @@ SFR63                0      0       0      64        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Tue May 23 15:45:26 2023
+Symbol Table                                                                                   Wed May 31 09:22:19 2023
 
                                      l13 0091                                       l18 009A  
                                      l81 0047                                       u60 0064  

@@ -23,19 +23,19 @@ The 'pic16f15244-wdt-wake-up' code example uses the PIC16F15244 Curiosity Nano D
 
 ## Setup
 1. Connect the PIC16F15244 Curiosity Nano board to a PC using the Micro-USB to USB 2.0 cable.
-2. If not already on your system, download and install MPLABX IDE version 6.10 (or newer).
-3. If not already on your system, download and install the XC8 C-Compiler version 2.41 (or newer).
+2. If the system not ready, download and install MPLABX IDE version 6.10 (or newer).
+3. If the system not ready, download and install the XC8 C-Compiler version 2.41 (or newer).
 4. Open the 'pic16f15244-wdt-wake-up.X' project as shown in Figure 1.
 
   ###### Figure 1: Open Project Window
   ![Open Project Window](images/OpenProject.png)
 
-5. Press the **Project Properties** button to open the Project Properties window. Select the Curiosity tool from the Tools drop-down menu as shown in Figure 2.
+5. Click-> **Project Properties** button to open the Project Properties window. Select the Curiosity tool from the Tools drop-down menu as shown in Figure 2.
 
   ###### Figure 2: Select the Nano in Project Properties Window
   ![Select Tool](images/SelectTool.png)
 
-6. Press the **Make and Program Device** button to program the PIC (see Figure 3). Verify that the device was successfully programmed (see Figure 4).
+6. Click-> **Make and Program Device** button to program the PIC (see Figure 3). Verify that the device was successfully programmed (see Figure 4).
 
   ###### Figure 3: 'Make and Program Device' Button
   ![Program Device Button](images/MakeAndProgramButton.png)
